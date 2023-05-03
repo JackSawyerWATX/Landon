@@ -9,6 +9,7 @@ const Main = () => {
             < Welcome/>
 
             < Hotelinfo/>
+            
         </main>
     );
 }

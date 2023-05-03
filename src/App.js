@@ -16,10 +16,6 @@ class App extends React.Component {
 
         < Main />
 
-        < Welcome />
-
-        < Hotelinfo />
-
         < Footer />
 
       </div>
