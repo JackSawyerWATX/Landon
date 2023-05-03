@@ -4,7 +4,7 @@ const Hotelinfo = () => {
     return (
         <div className="scene" id="hotelinfo">
             <article className="heading">
-                <h1>Essential Info</h1>
+                <h1>Essential Information</h1>
             </article>
             <article id="usefulinfo">
                 <section id="arrivalinfo">
