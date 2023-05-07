@@ -10,20 +10,20 @@ var params = {
   TableName: "GalleryImages",
   KeySchema: [
     // Partition Key
-    { AttributeName: "scr", KeyType: "HASH" },
+    { AttributeName: "src", KeyType: "HASH" },
     // Sort Keys
     { AttributeName: "className", KeyType: "RANGE"}  
   ],
   AttributeDefinitions: [
     { AttributeName: "alt", AttributeType: "S" },
-    { AttributeName: "scr", AttributeType: "S" },
+    { AttributeName: "src", AttributeType: "S" },
     { AttributeName: "className", AttributeType: "S" }
   ],
   LocalSecondaryIndexes: [
     {
       IndexName: "AltIndex",
       KeySchema: [
-        { AttributeName: "scr", KeyType: "HASH" },
+        { AttributeName: "src", KeyType: "HASH" },
         { AttributeName: "alt", KeyType: "RANGE" }
       ],
       Projection: {
