@@ -1,5 +1,5 @@
 import React from 'react';
-import galleryImagesData from './data/gallery_links.json'
+import galleryImagesData from './data/gallery_images.json'
 
 const Welcome = () => {
     return (
