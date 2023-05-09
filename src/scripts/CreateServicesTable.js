@@ -10,17 +10,17 @@ var params = {
     TableName: "Services",
     KeySchema: [
         // Partition Key
-        { AttributeName: "name", KeyType: "HASH" },
-
+        { AttributeName: "name", KeyType: "HASH" }
     ],
     AttributeDefinitions: [
-        { AttributeName: "name", AttributeType: "S" },
+        { AttributeName: "name", AttributeType: "S" }
     ],
     ProvisionedThroughput: {
         ReadCapacityUnits: 10,
         WriteCapacityUnits: 10
     }
 };
+
 dynamodb.createTable(params, function (err, data) {
     if (err)
         console.error("Unable to create table: ", JSON.stringify(err, null, 2))
