@@ -1,8 +1,40 @@
-import React from 'react';
-import servicesData from './data/services.json'
-import accessibilityData from './data/accessibilities.json'
+import React, {useState, useEffect} from 'react';
+//import servicesData from './data/services.json'
+//import accessibilityData from './data/accessibilities.json'
 
 const Hotelinfo = () => {
+    const [accessibilitiesData, setAccessibilitiesData] = useState([]);
+    const [servicesData, setServicesData] = useState([]);
+
+    const loadAccessibilitiesData = async () => {
+        //Query the API gateway
+        const response = await fetch('https://4qd4obh5f3.execute-api.us-east-1.amazonaws.com/Production/accessibilities')
+        let jsonData = await response.json();
+
+        //Assign response data to the state variable
+        setAccessibilitiesData(jsonData);
+    }
+
+    const loadServicesDataData = async () => {
+        //Query the API gateway
+        const response = await fetch('https://4qd4obh5f3.execute-api.us-east-1.amazonaws.com/Production/services')
+        let jsonData = await response.json();
+
+        //Assign response data to the state variable
+        setServicesData(jsonData);
+    }
+
+    useEffect(() => {
+        // load the menuLinks data from the API gateway
+        loadAccessibilitiesData();
+    }, []);
+
+    useEffect(() => {
+        // load the menuLinks data from the API gateway
+        loadServicesDataData();
+    }, []);
+
+
     return (
         <div className="scene" id="hotelinfo">
             <article className="heading">
@@ -36,7 +68,7 @@ const Hotelinfo = () => {
                     <p>We're committed to maintaining the same quality of service for every individual. We offer the following facilities for those with special needs:</p>
                     <ul>
                         {
-                            accessibilityData.map((accessibility) =>
+                            accessibilitiesData.map((accessibility) =>
                                 <li>{accessibility.name}</li>
                             )
                         }
