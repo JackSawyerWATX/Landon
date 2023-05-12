@@ -6,8 +6,8 @@ const Welcome = () => {
 
   const loadGalleryImagesData = async() => {
     // Query the API Gateway
-    const response = await fetch('https://4qd4obh5f3.execute-api.us-east-1.amazonaws.com/Production/galleryImages');
-    let jsonData = await response.json();
+    const resp = await fetch('https://a6lnno41t7.execute-api.us-east-1.amazonaws.com/Production/gallery_images');
+    let jsonData = await resp.json();
 
     // Assign response data to our state variable
     setGalleryImagesData(jsonData);
