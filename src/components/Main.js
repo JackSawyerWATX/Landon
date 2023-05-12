@@ -1,7 +1,6 @@
 import React from "react";
 import Hotelinfo from './Hotelinfo.js';
 import Welcome from './Welcome.js';
-// import galleryImagesData from './data/gallery_images.json'
 
 const Main = () => {
 

@@ -11,7 +11,7 @@ var dynamodb = new AWS.DynamoDB.DocumentClient();
 var galleryImagesData =
   JSON.parse(fs.readFileSync('../components/data/gallery_images.json', 'utf8'));
 
-galleryImagesData.forEach(function (galleryImage) {
+galleryImagesData.forEach(function(galleryImage) {
   var className = galleryImage.className;
   if (className.trim() == "")
     className = "no_class";
