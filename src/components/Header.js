@@ -1,49 +1,51 @@
-import React, { useState, useEffect } from 'react';
-// import menuLinksData from './data/menu_links.json'
+import React, { useEffect, useRef } from 'react';
 
 const Header = () => {
-    const [menuLinksData, setMenuLinksData] = useState([]);
+  const heroRef = useRef(null);
+  const contentRef = useRef(null);
 
-    const loadMenuLinksData = async () => {
-        //Query the API gateway
-        const response = await fetch('https://4qd4obh5f3.execute-api.us-east-1.amazonaws.com/Production/menuLinks')
-        let jsonData = await response.json();
+  useEffect(() => {
+    const hero = heroRef.current;
+    const content = contentRef.current;
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const bounds = hero.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(hero.offsetHeight, -bounds.top));
+      content.style.setProperty('--text-offset', `${motion.matches ? 0 : progress * 0.16}px`);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    motion.addEventListener('change', schedule);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      motion.removeEventListener('change', schedule);
+    };
+  }, []);
 
-        //Assign response data to the state variable
-        setMenuLinksData(jsonData);
-    }
-
-    useEffect(() => {
-        // load the menuLinks data from the API gateway
-        loadMenuLinksData();
-    }, []);
-
-
-    return (
-        <header id="intro">
-            <article className="fullheight">
-                <div className="hgroup">
-                    <h1>Landon Hotel</h1>
-                    <h2>West London</h2>
-                    <p><a href="#welcome"><img src="https://landonhotel.com/images/misc/arrow.png" alt="down arrow" /></a></p>
-                </div>
-            </article>
-
-            <nav id="nav">
-                <div className="navbar">
-                    <div className="brand"><a href="#welcome">Landon <span>Hotel</span></a></div>
-                    <ul>
-                        {
-                            menuLinksData.map((link) =>
-                                <li><a className={`icon ${link.class}`} href={link.href}><span>{link.text}</span></a></li>
-                            )
-                        }
-
-                    </ul>
-                </div>
-            </nav>
-        </header>
-    );
-}
-
+  return (
+  <header id="intro">
+    <nav className="navigation" aria-label="Main navigation">
+      <a className="wordmark" href="#intro">LANDON<span>HOTEL · LONDON</span></a>
+      <div className="nav-links"><a href="#welcome">Our story</a><a href="#rooms">Rooms</a><a href="#dining">Dining</a><a href="#events">Gather</a><a href="#hotelinfo">Your stay</a></div>
+      <a className="button nav-button" href="#arrivalinfo">Plan your stay <span aria-hidden="true">↗</span></a>
+    </nav>
+    <div className="hero" ref={heroRef}>
+      <div className="hero-content" ref={contentRef}>
+        <p className="eyebrow">AT HOME IN WEST LONDON</p>
+        <h1>A London stay.<br /><em>A world away.</em></h1>
+        <p className="hero-description">City energy. Rooftop moments. A place to make yourself at home in the heart of the West End.</p>
+        <a className="button light-button" href="#welcome">Discover the Landon <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </header>
+  );
+};
 export default Header;
