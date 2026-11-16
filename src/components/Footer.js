@@ -1,19 +1,5 @@
 import React from 'react';
-
-const Footer = () => {
-    return (
-        <footer className="scene">
-            <article className="content">
-                <div id="socialmedia">
-                    <ul className="group">
-                        <li><a href="https://twitter.com"><img className="icon" src="https://landonhotel.com/images/socialmedia/twitter.png" alt="icon for twitter" /></a></li>
-                        <li><a href="http://www.facebook.com"><img className="icon" src="https://landonhotel.com/images/socialmedia/facebook.png" alt="icon for facebook" /></a></li>
-                        <li><a href="http://www.youtube.com"><img className="icon" src="https://landonhotel.com/images/socialmedia/youtube.png" alt="icon for youtube" /></a></li>
-                    </ul>
-                </div>
-            </article>
-        </footer>
-    );
-}
-
+const Footer = () => (
+  <footer><div className="footer-top"><a className="wordmark" href="#intro">LANDON<span>HOTEL · LONDON</span></a><p>Your London story starts here.</p><a className="text-link" href="#intro">Back to the top ↑</a></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Landon Hotel</span><span>West London, United Kingdom</span><div><a href="https://twitter.com/">Twitter ↗</a><a href="https://www.facebook.com/">Facebook ↗</a><a href="https://www.youtube.com/">YouTube ↗</a></div></div></footer>
+);
 export default Footer;

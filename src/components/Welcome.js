@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-// import galleryImagesData from './data/gallery_images.json'
+import galleryImages from './data/gallery_images.json';
 
 const Welcome = () => {
-  const [galleryImagesData, setGalleryImagesData] = useState([]);
+  const [galleryImagesData, setGalleryImagesData] = useState(galleryImages);
 
   const loadGalleryImagesData = async() => {
     // Query the API Gateway
@@ -15,21 +15,21 @@ const Welcome = () => {
 
   useEffect(() => {
     // Load the gallery images data from the API Gateway
-    loadGalleryImagesData();
+    loadGalleryImagesData().catch(() => {});
   }, []);
 
   return (
     <div className="scene" id="welcome">
       <article className="content">
-        <div className="gallery">
+        <div className="gallery" id="gallery" aria-label="A glimpse of the Landon">
           {
             galleryImagesData.map((image) =>
-            <img className={image.className} src={image.src} alt={image.alt} />
+            <img key={image.src} loading="lazy" className={image.className} src={image.src} alt={image.alt} />
             )
           }
         </div>
-        <h1>Welcome to the Landon&nbsp;Hotel</h1>
-        <p>The original Landon perseveres after 50 years in the heart of West London. The West End neighborhood has something for everyone—from theater to dining to historic sights. And the not-to-miss Rooftop Cafe is a great place for travelers and locals to engage over drinks, food, and good&nbsp;conversation. &nbsp;To learn more about the Landon Hotel in the West End, browse our website and <a href="files/landon_information_sheet_London.pdf">download our handy information sheet</a>.</p>
+        <div className="welcome-copy"><p className="eyebrow">THE CITY OUTSIDE. YOUR SANCTUARY WITHIN.</p><h2>London, with a<br /><em>personal touch.</em></h2>
+        <p>The original Landon Hotel has welcomed guests to the heart of West London for 50 years. The West End neighbourhood has something for everyone, from theatre and dining to historic sights. Our Rooftop Café is a welcoming place for travellers and locals to enjoy drinks, food, and good conversation. To learn more about the Landon Hotel, browse our website and <a href="https://www.landonhotel.com/files/landon_information_sheet_London.pdf">download our handy information sheet</a>.</p><a className="text-link" href="#hotelinfo">Make yourself at home <span aria-hidden="true">↗</span></a></div>
       </article>
     </div>
   );
