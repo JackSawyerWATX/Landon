@@ -37,7 +37,7 @@ const Header = () => {
       <div className="nav-links"><a href="#welcome">Our story</a><a href="#rooms">Rooms</a><a href="#dining">Dining</a><a href="#events">Gather</a><a href="#hotelinfo">Your stay</a></div>
       <a className="button nav-button" href="#arrivalinfo">Plan your stay <span aria-hidden="true">↗</span></a>
     </nav>
-    <div className="hero" ref={heroRef}>
+    <div className="hero" ref={heroRef} style={{ '--hero-photo': `url("${process.env.PUBLIC_URL}/images/hotel/splash_hotelphoto.jpg")` }}>
       <div className="hero-content" ref={contentRef}>
         <p className="eyebrow">AT HOME IN WEST LONDON</p>
         <h1>A London stay.<br /><em>A world away.</em></h1>
