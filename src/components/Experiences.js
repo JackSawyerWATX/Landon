@@ -1,5 +1,5 @@
 import React from 'react';
-const imageRoot = 'https://www.landonhotel.com/images/hotel/';
+const imageRoot = `${process.env.PUBLIC_URL}/images/hotel/`;
 const rooms = [
   ['Piccadilly', 'Compact comfort for days spent exploring.'],
   ['Cambridge', 'A king bed and a calm, warm palette.'],
